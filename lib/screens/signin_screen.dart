@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
 import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/signup_screen.dart';
+import 'package:test/screens/parentOrChiled.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpScreen()));
+                MaterialPageRoute(builder: (context) => parentOrChiled()));
           },
           child: const Text(
             " Sign Up",
