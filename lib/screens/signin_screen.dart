@@ -39,7 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 //logoWidget("assets/images/logo1.jpeg"),
                 Positioned(
                   child: Image.asset(
-                    "assets/images/logo1.jpeg",
+                    "assets/images/logo1.png",
                     height: size.height * 0.35,
                   ),
                 ),
@@ -69,29 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Error"),
-                            content: Text(error.toString()),
-                            actions: [
-                              FlatButton(
-                                child: const Text("Ok"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              )
-                            ],
-                          );
-                        });
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(
-                    //     content: Text(error.toString()),
-                    //     backgroundColor: Theme.of(context).errorColor,
-                    //     duration: const Duration(milliseconds: 50000),
-                    //   ),
-                    // );
+                    showAlertDialog(context);
                   });
                 }),
                 signUpOption()
@@ -137,6 +115,33 @@ class _SignInScreenState extends State<SignInScreen> {
         onPressed: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => ResetPassword())),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("You must enter all information."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

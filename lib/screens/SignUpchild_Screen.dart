@@ -54,8 +54,8 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter child Password", Icons.lock_outlined,
-                    true, _passwordTextController),
+                reusableTextField("Enter Password", Icons.lock_outlined, true,
+                    _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
@@ -69,12 +69,40 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).onError((error, stackTrace) {
+                    showAlertDialog(context);
                     print("Error ${error.toString()}");
                   });
                 })
               ],
             ),
           ))),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("You must enter all information."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

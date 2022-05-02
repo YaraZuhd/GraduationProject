@@ -49,10 +49,16 @@ class _parentOrChiledState extends State<parentOrChiled> {
                 const Text(
                     "By using this application. you will feel comfortable because your family members will be safe.",
                     style: TextStyle(
-                      color: Color.fromARGB(179, 242, 241, 245),
+                      color: Color.fromARGB(179, 255, 255, 255),
                       fontSize: 20.0,
                     )),
+                const SizedBox(
+                  height: 20,
+                ),
                 Divider(),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
                     "Please chose which device you want to use the app on",
                     style: TextStyle(
