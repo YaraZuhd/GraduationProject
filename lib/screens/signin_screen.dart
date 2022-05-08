@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
 import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/signup_screen.dart';
+import 'package:test/screens/parentOrChiled.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 //logoWidget("assets/images/logo1.jpeg"),
                 Positioned(
                   child: Image.asset(
-                    "assets/images/logo1.jpeg",
+                    "assets/images/logo1.png",
                     height: size.height * 0.35,
                   ),
                 ),
@@ -69,29 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Error"),
-                            content: Text(error.toString()),
-                            actions: [
-                              FlatButton(
-                                child: const Text("Ok"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              )
-                            ],
-                          );
-                        });
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(
-                    //     content: Text(error.toString()),
-                    //     backgroundColor: Theme.of(context).errorColor,
-                    //     duration: const Duration(milliseconds: 50000),
-                    //   ),
-                    // );
+                    showAlertDialog(context);
                   });
                 }),
                 signUpOption()
@@ -112,7 +90,11 @@ class _SignInScreenState extends State<SignInScreen> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
+<<<<<<< HEAD
                 MaterialPageRoute(builder: (context) => const SignUpScreen()));
+=======
+                MaterialPageRoute(builder: (context) => parentOrChiled()));
+>>>>>>> 69a91ecffafff9d4f66842ed413418ebd872ffc9
           },
           child: const Text(
             " Sign Up",
@@ -137,6 +119,33 @@ class _SignInScreenState extends State<SignInScreen> {
         onPressed: () => Navigator.push(context,
             MaterialPageRoute(builder: (context) => const ResetPassword())),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("You must enter all information."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

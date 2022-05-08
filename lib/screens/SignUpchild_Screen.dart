@@ -4,17 +4,17 @@ import 'package:test/screens/home_screen.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class SignUpchildScreen extends StatefulWidget {
+  const SignUpchildScreen({Key? key}) : super(key: key);
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _emailTextController = TextEditingController();
-  final TextEditingController _userNameTextController = TextEditingController();
+class _SignUpScreenState extends State<SignUpchildScreen> {
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,19 +38,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
-                    _userNameTextController),
+                reusableTextField("Enter child Name", Icons.person_outline,
+                    false, _userNameTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
-                    _emailTextController),
+                reusableTextField("Enter child Email ", Icons.person_outline,
+                    false, _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
@@ -66,17 +66,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     print("Created New Account");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).onError((error, stackTrace) {
+                    showAlertDialog(context);
                     print("Error ${error.toString()}");
                   });
                 })
               ],
             ),
           ))),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("You must enter all information."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
