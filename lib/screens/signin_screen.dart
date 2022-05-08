@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
 import 'package:test/screens/reset_password.dart';
@@ -46,7 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -68,7 +69,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    if (kDebugMode) {
+                      print("Error ${error.toString()}");
+                    }
                     showAlertDialog(context);
                   });
                 }),
@@ -89,12 +92,10 @@ class _SignInScreenState extends State<SignInScreen> {
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
-            Navigator.push(context,
-<<<<<<< HEAD
-                MaterialPageRoute(builder: (context) => const SignUpScreen()));
-=======
-                MaterialPageRoute(builder: (context) => parentOrChiled()));
->>>>>>> 69a91ecffafff9d4f66842ed413418ebd872ffc9
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const parentOrChiled()));
           },
           child: const Text(
             " Sign Up",
@@ -124,8 +125,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
+    Widget okButton = TextButton(
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -133,8 +134,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error"),
-      content: Text("You must enter all information."),
+      title: const Text("Error"),
+      content: const Text("You must enter all information."),
       actions: [
         okButton,
       ],

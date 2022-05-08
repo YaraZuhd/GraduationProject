@@ -11,17 +11,10 @@ class SignUpParentScreen extends StatefulWidget {
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-<<<<<<< HEAD:lib/screens/signup_screen.dart
-class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _emailTextController = TextEditingController();
-  final TextEditingController _userNameTextController = TextEditingController();
-=======
 class _SignUpScreenState extends State<SignUpParentScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
->>>>>>> 69a91ecffafff9d4f66842ed413418ebd872ffc9:lib/screens/signupParent_screen.dart
   @override
   Widget build(BuildContext context) {
     return Scaffold(
