@@ -42,7 +42,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const Text(
@@ -51,7 +51,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
                       color: Color.fromARGB(179, 242, 241, 245),
                       fontSize: 20.0,
                     )),
-                Divider(),
+                const Divider(),
                 const Text("Please chose one of the following",
                     style: TextStyle(
                       color: Color.fromARGB(179, 11, 11, 11),
@@ -89,7 +89,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
         ),
         title: Text(
           notification.title,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       );
 }

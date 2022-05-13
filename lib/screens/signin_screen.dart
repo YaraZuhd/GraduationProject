@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
 import 'package:test/screens/reset_password.dart';
@@ -15,8 +16,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -78,7 +79,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    if (kDebugMode) {
+                      print("Error ${error.toString()}");
+                    }
                     showAlertDialog(context);
                   });
                 }),
@@ -99,8 +102,15 @@ class _SignInScreenState extends State<SignInScreen> {
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
+<<<<<<< HEAD
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SignUpParentScreen()));
+=======
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const parentOrChiled()));
+>>>>>>> 05bca65e5dd68b2a0f833fcfd6a723e88b51b521
           },
           child: const Text(
             " Sign Up",
@@ -122,16 +132,16 @@ class _SignInScreenState extends State<SignInScreen> {
           style: TextStyle(color: Colors.white70),
           textAlign: TextAlign.right,
         ),
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResetPassword())),
+        onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResetPassword())),
       ),
     );
   }
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
+    Widget okButton = TextButton(
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -139,8 +149,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error"),
-      content: Text("You must enter all information."),
+      title: const Text("Error"),
+      content: const Text("You must enter all information."),
       actions: [
         okButton,
       ],
