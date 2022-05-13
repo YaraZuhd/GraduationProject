@@ -102,15 +102,12 @@ class _SignInScreenState extends State<SignInScreen> {
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
-<<<<<<< HEAD
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SignUpParentScreen()));
-=======
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const parentOrChiled()));
->>>>>>> 05bca65e5dd68b2a0f833fcfd6a723e88b51b521
           },
           child: const Text(
             " Sign Up",
