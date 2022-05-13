@@ -107,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const parentOrChiled()));
+                    builder: (context) => const SignUpParentScreen()));
           },
           child: const Text(
             " Sign Up",
