@@ -49,8 +49,8 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter child Email ", Icons.person_outline,
-                    false, _emailTextController),
+                reusableTextField("Enter the code ", Icons.lock_outlined, false,
+                    _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),

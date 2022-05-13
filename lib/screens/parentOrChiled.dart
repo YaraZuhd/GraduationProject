@@ -7,6 +7,7 @@ import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:test/screens/notification_setting.dart';
 import 'package:test/screens/SignUpchild_Screen.dart';
+import 'package:test/screens/signin_screen.dart';
 
 class parentOrChiled extends StatefulWidget {
   const parentOrChiled({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
   final notifications = NotificationSetting(title: 'Child device');
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -46,15 +48,13 @@ class _parentOrChiledState extends State<parentOrChiled> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                const Text(
-                    "By using this application. you will feel comfortable because your family members will be safe.",
-                    style: TextStyle(
-                      color: Color.fromARGB(179, 255, 255, 255),
-                      fontSize: 20.0,
-                    )),
-                const SizedBox(
-                  height: 20,
+                Positioned(
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    height: size.height * 0.35,
+                  ),
                 ),
+
                 Divider(),
                 const SizedBox(
                   height: 20,
@@ -62,8 +62,8 @@ class _parentOrChiledState extends State<parentOrChiled> {
                 const Text(
                     "Please chose which device you want to use the app on",
                     style: TextStyle(
-                      color: Color.fromARGB(179, 11, 11, 11),
-                      fontSize: 20.0,
+                      color: Color.fromARGB(179, 255, 255, 255),
+                      fontSize: 24.0,
                     )),
                 const SizedBox(
                   height: 20,
@@ -111,10 +111,10 @@ class _parentOrChiledState extends State<parentOrChiled> {
   Widget signUpOption() {
     return Column(
       children: [
-        firebaseUIButton(context, "Sign Up", () {
+        firebaseUIButton(context, "Get Start", () {
           if (allowNotifications.value) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpParentScreen()));
+                MaterialPageRoute(builder: (context) => SignInScreen()));
           } else if (notifications.value) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SignUpchildScreen()));

@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:test/screens/signin_screen.dart';
+import 'package:test/screens/parentOrChiled.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInScreen(),
+      home: const parentOrChiled(),
     );
   }
 }

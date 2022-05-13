@@ -5,6 +5,7 @@ import 'package:test/screens/reset_password.dart';
 import 'package:test/screens/parentOrChiled.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:test/screens/signupParent_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -21,6 +22,15 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Sign In",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -39,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 //logoWidget("assets/images/logo1.jpeg"),
                 Positioned(
                   child: Image.asset(
-                    "assets/images/logo1.png",
+                    "assets/images/logo.png",
                     height: size.height * 0.35,
                   ),
                 ),
@@ -90,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => parentOrChiled()));
+                MaterialPageRoute(builder: (context) => SignUpParentScreen()));
           },
           child: const Text(
             " Sign Up",
