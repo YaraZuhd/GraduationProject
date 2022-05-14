@@ -47,7 +47,7 @@ class _ParentOrChiledState extends State<ParentOrChiled> {
               children: <Widget>[
                 Positioned(
                   child: Image.asset(
-                    "assets/images/logo.png",
+                    "assets/images/logo1.png",
                     height: size.height * 0.35,
                   ),
                 ),
