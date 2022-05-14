@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
-import 'package:test/screens/parent_or_child.dart';
 import 'package:test/screens/reset_password.dart';
 import 'package:test/screens/signup_parent_screen.dart';
 import 'package:test/utils/color_utils.dart';
