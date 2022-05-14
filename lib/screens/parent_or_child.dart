@@ -1,21 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/home_screen.dart';
-import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/signupParent_screen.dart';
-import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:test/screens/notification_setting.dart';
-import 'package:test/screens/SignUpchild_Screen.dart';
+import 'package:test/screens/signup_child_screen.dart';
+import 'package:test/screens/signup_parent_screen.dart';
+import 'package:test/utils/color_utils.dart';
 
-class parentOrChiled extends StatefulWidget {
-  const parentOrChiled({Key? key}) : super(key: key);
+class ParentOrChiled extends StatefulWidget {
+  const ParentOrChiled({Key? key}) : super(key: key);
 
   @override
-  _parentOrChiledState createState() => _parentOrChiledState();
+  _ParentOrChiledState createState() => _ParentOrChiledState();
 }
 
-class _parentOrChiledState extends State<parentOrChiled> {
+class _ParentOrChiledState extends State<ParentOrChiled> {
   final allowNotifications = NotificationSetting(title: 'Parent device');
 
   final notifications = NotificationSetting(title: 'Child device');
@@ -55,7 +52,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
                 const SizedBox(
                   height: 20,
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -83,8 +80,8 @@ class _parentOrChiledState extends State<parentOrChiled> {
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
+    Widget okButton = TextButton(
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -92,8 +89,8 @@ class _parentOrChiledState extends State<parentOrChiled> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error"),
-      content: Text("You must choose device."),
+      title: const Text("Error"),
+      content: const Text("You must choose device."),
       actions: [
         okButton,
       ],
@@ -113,11 +110,15 @@ class _parentOrChiledState extends State<parentOrChiled> {
       children: [
         firebaseUIButton(context, "Sign Up", () {
           if (allowNotifications.value) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpParentScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SignUpParentScreen()));
           } else if (notifications.value) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpchildScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SignUpchildScreen()));
           } else {
             showAlertDialog(context);
           }
@@ -167,7 +168,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
         ),
         title: Text(
           notification.title,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       );
 }

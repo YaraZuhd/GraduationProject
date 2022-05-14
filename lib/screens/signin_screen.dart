@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/parent_or_child.dart';
 import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/parentOrChiled.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +36,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                //logoWidget("assets/images/logo1.jpeg"),
                 Positioned(
                   child: Image.asset(
                     "assets/images/logo1.png",
@@ -69,9 +67,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
-                    if (kDebugMode) {
-                      print("Error ${error.toString()}");
-                    }
                     showAlertDialog(context);
                   });
                 }),
@@ -95,7 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const parentOrChiled()));
+                    builder: (context) => const ParentOrChiled()));
           },
           child: const Text(
             " Sign Up",

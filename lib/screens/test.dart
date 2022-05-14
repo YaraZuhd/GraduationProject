@@ -1,20 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/home_screen.dart';
-import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/signupParent_screen.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:test/screens/notification_setting.dart';
 
-class parentOrChiled extends StatefulWidget {
-  const parentOrChiled({Key? key}) : super(key: key);
+class ParentOrChiled extends StatefulWidget {
+  const ParentOrChiled({Key? key}) : super(key: key);
 
   @override
-  _parentOrChiledState createState() => _parentOrChiledState();
+  _ParentOrChiledState createState() => _ParentOrChiledState();
 }
 
-class _parentOrChiledState extends State<parentOrChiled> {
+class _ParentOrChiledState extends State<ParentOrChiled> {
   final notifications = [
     NotificationSetting(title: 'parent'),
     NotificationSetting(title: 'child'),
@@ -73,7 +68,7 @@ class _parentOrChiledState extends State<parentOrChiled> {
           setState(() {
             final newValue = !notification.value;
             notification.value = newValue;
-            print(newValue);
+            // print(newValue);
           });
         },
       );

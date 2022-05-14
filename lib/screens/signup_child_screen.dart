@@ -12,9 +12,9 @@ class SignUpchildScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpchildScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +38,7 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -65,12 +65,13 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    print("Created New Account");
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
                   }).onError((error, stackTrace) {
                     showAlertDialog(context);
-                    print("Error ${error.toString()}");
+                    // print("Error ${error.toString()}");
                   });
                 })
               ],
@@ -81,8 +82,8 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
+    Widget okButton = TextButton(
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -90,8 +91,8 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error"),
-      content: Text("You must enter all information."),
+      title: const Text("Error"),
+      content: const Text("You must enter all information."),
       actions: [
         okButton,
       ],
