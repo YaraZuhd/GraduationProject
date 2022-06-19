@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:test/screens/notification_setting.dart';
 import 'package:test/screens/signin_screen.dart';
 import 'package:test/screens/signup_child_screen.dart';
-// import 'package:test/screens/signup_parent_screen.dart';
 import 'package:test/utils/color_utils.dart';
 
 class ParentOrChiled extends StatefulWidget {

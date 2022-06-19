@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test/data/data_repositry_areas.dart';
 import 'package:test/data/red_and_green.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
 import 'package:test/screens/view_areas.dart';
 import 'package:test/utils/color_utils.dart';
 
@@ -28,8 +28,12 @@ class PopUpScreen extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                            title: '',
+                          )));
             },
           ),
           flexibleSpace: Container(

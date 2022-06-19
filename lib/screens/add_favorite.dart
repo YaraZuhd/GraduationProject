@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/add_kid.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
 import 'package:test/screens/select_coordinates.dart';
 import 'package:test/screens/select_from_map.dart';
-import 'package:test/screens/settings.dart';
 import 'package:test/utils/color_utils.dart';
 
 class AddFavorite extends StatefulWidget {
@@ -14,17 +12,21 @@ class AddFavorite extends StatefulWidget {
 }
 
 class _AddFavoriteState extends State<AddFavorite> {
-  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
           title: const Text('Add Favorite Places'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                            title: '',
+                          )));
             },
           ),
           flexibleSpace: Container(
@@ -38,28 +40,6 @@ class _AddFavoriteState extends State<AddFavorite> {
                   hexStringToColor("5E61F4")
                 ])),
           )),
-      bottomNavigationBar: BottomNavigationBar(
-        mouseCursor: SystemMouseCursors.grab,
-        iconSize: 20,
-        selectedFontSize: 14,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add Kid',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favorite Places',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gps_fixed),
-            label: 'Tracking Kid',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 149, 71, 163),
-        onTap: _onItemTapped,
-      ),
       body: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -68,6 +48,9 @@ class _AddFavoriteState extends State<AddFavorite> {
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
             child: Column(
               children: <Widget>[
+                const SizedBox(
+                  height: 50,
+                ),
                 const Text(
                   'Please Chose One Of \nThe Following To Determine \nRed & Green Areas\n Safe And Non-Safe Areas',
                   style: TextStyle(
@@ -155,21 +138,5 @@ class _AddFavoriteState extends State<AddFavorite> {
             ),
           ))),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AddKid()));
-      } else if (index == 1) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AddFavorite()));
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AppSettings()));
-      }
-    });
   }
 }

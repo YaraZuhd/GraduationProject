@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
 import 'package:test/screens/reset_password.dart';
 import 'package:test/screens/signup_parent_screen.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
-  //final List<DataModel> dataList;
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
@@ -75,7 +74,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                            builder: (context) => const MyHomePage(
+                                  title: '',
+                                )));
                   }).onError((error, stackTrace) {
                     showAlertDialog(context);
                   });

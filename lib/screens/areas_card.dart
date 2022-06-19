@@ -10,37 +10,39 @@ class AreasCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: InkWell(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Column(
-                  children: [
-                    Text('Area Name :' + data.areaName, style: boldStyle),
-                    Text(
-                      'Email :' + data.email,
-                      style: boldStyle,
-                    ),
-                    Text('Latitude :' + data.lat, style: boldStyle),
-                    Text(
-                      'Longitude :' + data.lang,
-                      style: boldStyle,
-                    ),
-                    Text('UnSafe Area :' + data.notSafe.toString(),
-                        style: boldStyle),
-                    Text(
-                      'Safe Area :' + data.safe.toString(),
-                      style: boldStyle,
-                    ),
-                  ],
-                )),
-          ),
-        ],
-      ),
-    ));
+    return Column(children: [
+      Card(
+          child: InkWell(
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      Text('Area Name :' + data.areaName, style: boldStyle),
+                      Text(
+                        'Email :' + data.email,
+                        style: boldStyle,
+                      ),
+                      Text('Latitude :' + data.lat, style: boldStyle),
+                      Text(
+                        'Longitude :' + data.lang,
+                        style: boldStyle,
+                      ),
+                      Text('UnSafe Area :' + data.notSafe.toString(),
+                          style: boldStyle),
+                      Text(
+                        'Safe Area :' + data.safe.toString(),
+                        style: boldStyle,
+                      ),
+                    ],
+                  )),
+            ),
+          ],
+        ),
+      ))
+    ]);
   }
 }

@@ -1,31 +1,31 @@
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:test/screens/help_button.dart';
+import 'package:test/screens/location.dart';
 
-class SignUpchildScreen extends StatefulWidget {
-  const SignUpchildScreen({Key? key}) : super(key: key);
+class help_buttonScreen extends StatefulWidget {
+  const help_buttonScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _help_buttonScreen createState() => _help_buttonScreen();
 }
 
-class _SignUpScreenState extends State<SignUpchildScreen> {
-  //final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _emailTextController = TextEditingController();
-  final TextEditingController _userNameTextController = TextEditingController();
+class _help_buttonScreen extends State<help_buttonScreen> {
+  // final TextEditingController _passwordTextController = TextEditingController();
+  // final TextEditingController _emailTextController = TextEditingController();
+  // final TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   title: const Text(
-      //     "Sign Up",
-      //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      //   ),
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Help Button",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -43,21 +43,17 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter child Name", Icons.person_outline,
-                    false, _userNameTextController),
+                const Text("Press the button when you feel danger",
+                    style: TextStyle(
+                      color: Color.fromARGB(179, 255, 255, 255),
+                      fontSize: 24.0,
+                    )),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter the code ", Icons.lock_outlined, false,
-                    _emailTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                firebaseUIButton(context, "Sign Up", () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const help_buttonScreen()));
+                firebaseUIButton(context, "HELP", () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const MyApp()));
                 })
               ],
             ),
@@ -67,7 +63,7 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = TextButton(
+    Widget okButton = FlatButton(
       child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();

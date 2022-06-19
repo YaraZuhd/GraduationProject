@@ -4,7 +4,7 @@ import 'package:test/data/data_repositry_areas.dart';
 import 'package:test/data/red_and_green.dart';
 import 'package:test/screens/add_favorite.dart';
 import 'package:test/screens/areas_card.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
 import 'package:test/utils/color_utils.dart';
 
 class ViewAreas extends StatefulWidget {
@@ -29,13 +29,17 @@ class _ViewAreasState extends State<ViewAreas> {
       appBar: AppBar(
           title: const Padding(
             padding: EdgeInsets.fromLTRB(0, 15, 0, 5),
-            child: Text('View Red And Green Areas'),
+            child: Text('View Red & Green Areas'),
           ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                            title: '',
+                          )));
             },
           ),
           flexibleSpace: Container(

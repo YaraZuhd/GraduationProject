@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/home_screen.dart';
-import 'package:test/screens/settings.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:test/data/data_model.dart';
 import 'package:test/data/data_repositry.dart';
@@ -19,7 +16,6 @@ class AddKid extends StatefulWidget {
 }
 
 class _AddKidState extends State<AddKid> {
-  int _selectedIndex = 0;
   String exsistingCode = '';
   late String docId;
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -35,14 +31,8 @@ class _AddKidState extends State<AddKid> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
-            },
-          ),
           title: const Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
             child: Text('Add Kid To Protect'),
@@ -58,28 +48,6 @@ class _AddKidState extends State<AddKid> {
                   hexStringToColor("5E61F4")
                 ])),
           )),
-      bottomNavigationBar: BottomNavigationBar(
-        mouseCursor: SystemMouseCursors.grab,
-        iconSize: 20,
-        selectedFontSize: 14,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add Kid',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favorite Places',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gps_fixed),
-            label: 'Tracking Kid',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 149, 71, 163),
-        onTap: _onItemTapped,
-      ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -94,6 +62,9 @@ class _AddKidState extends State<AddKid> {
             padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
             child: Column(
               children: <Widget>[
+                const SizedBox(
+                  height: 60,
+                ),
                 const Text(
                   'Please Fill The Following Information \nTo Generate A Code and Conect \nYour Kid Device',
                   style: TextStyle(
@@ -146,24 +117,26 @@ class _AddKidState extends State<AddKid> {
                       padding: const EdgeInsets.fromLTRB(10, 2, 10, 0)),
                   onPressed: validateInfo()
                       ? () {
-                          FirebaseFirestore.instance
-                              .collection('DataModel')
-                              .where('email', isEqualTo: email)
-                              .get()
-                              .then((value) {
-                            for (var element in value.docs) {
-                              docId = element.id;
-                              //print(element.id);
-                            }
-                          });
-                          FirebaseFirestore.instance
-                              .collection('DataModel')
-                              .doc(docId)
-                              .get()
-                              .then((value) {
-                            exsistingCode = value.get('uniqueCode');
-                            //print('12');
-                          });
+                          if (exsistingCode != '') {
+                            FirebaseFirestore.instance
+                                .collection('DataModel')
+                                .where('email', isEqualTo: email)
+                                .get()
+                                .then((value) {
+                              for (var element in value.docs) {
+                                docId = element.id;
+                                //print(element.id);
+                              }
+                            });
+                            FirebaseFirestore.instance
+                                .collection('DataModel')
+                                .doc(docId)
+                                .get()
+                                .then((value) {
+                              exsistingCode = value.get('uniqueCode');
+                              //print('12');
+                            });
+                          }
                           //print(exsistingCode);
                           if (exsistingCode == '') {
                             code = generateRandomString();
@@ -207,22 +180,6 @@ class _AddKidState extends State<AddKid> {
     } else {
       return true;
     }
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AddKid()));
-      } else if (index == 1) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AddFavorite()));
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AppSettings()));
-      }
-    });
   }
 
   Future<void> _selectDate(BuildContext context) async {

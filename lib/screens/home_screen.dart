@@ -71,7 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
           )),
       bottomNavigationBar: BottomNavigationBar(
         mouseCursor: SystemMouseCursors.grab,
-        // type: BottomNavigationBarType.shifting,
         iconSize: 20,
         selectedFontSize: 14,
         items: const <BottomNavigationBarItem>[

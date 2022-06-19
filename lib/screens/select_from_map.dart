@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
 import 'package:test/screens/popup.dart';
 import 'package:test/utils/color_utils.dart';
 
@@ -14,6 +15,8 @@ class SelectFromMap extends StatefulWidget {
 
 class _SelectFromMapState extends State<SelectFromMap> {
   final Completer<GoogleMapController> _controller = Completer();
+  late double lat;
+  late double long;
   //String _address = ""; // create this variable
   static const CameraPosition _initalCameraPosition = CameraPosition(
     target: LatLng(31.768319, 35.21371),
@@ -32,8 +35,12 @@ class _SelectFromMapState extends State<SelectFromMap> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                            title: '',
+                          )));
             },
           ),
           flexibleSpace: Container(
@@ -59,8 +66,9 @@ class _SelectFromMapState extends State<SelectFromMap> {
         },
         onTap: (latLng) {
           //print('${latLng.latitude}, ${latLng.longitude}');
-          double lat = latLng.latitude;
-          double long = latLng.longitude;
+          lat = latLng.latitude;
+          long = latLng.longitude;
+          //_showDialog(context);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -71,4 +79,33 @@ class _SelectFromMapState extends State<SelectFromMap> {
       ),
     );
   }
+
+  // _showDialog(BuildContext context) {
+  //   showDialog(
+  //       builder: (context) => CupertinoAlertDialog(
+  //             title: Column(
+  //               children: const <Widget>[
+  //                 Text("The Selected Coordinate :\n"),
+  //                 SizedBox(
+  //                   height: 20,
+  //                 )
+  //               ],
+  //             ),
+  //             content: Text(
+  //                 'Lat : ' + lat.toString() + '\nLong : ' + long.toString(),
+  //                 style: const TextStyle(
+  //                   color: Colors.black,
+  //                   fontSize: 20,
+  //                 )),
+  //             actions: <Widget>[
+  //               CupertinoDialogAction(
+  //                 child: const Text("OK"),
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //       context: context);
+  // }
 }

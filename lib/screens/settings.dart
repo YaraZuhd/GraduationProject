@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/add_kid.dart';
-import 'package:test/screens/home_screen.dart';
+import 'package:test/screens/nav.dart';
+import 'package:test/screens/profile.dart';
 import 'package:test/utils/color_utils.dart';
 
 class AppSettings extends StatefulWidget {
@@ -12,7 +11,6 @@ class AppSettings extends StatefulWidget {
 }
 
 class _AppSettingsState extends State<AppSettings> {
-  int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +19,12 @@ class _AppSettingsState extends State<AppSettings> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                            title: '',
+                          )));
             },
           ),
           flexibleSpace: Container(
@@ -36,45 +38,27 @@ class _AppSettingsState extends State<AppSettings> {
                   hexStringToColor("5E61F4")
                 ])),
           )),
-      bottomNavigationBar: BottomNavigationBar(
-        mouseCursor: SystemMouseCursors.grab,
-        iconSize: 20,
-        selectedFontSize: 14,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add Kid',
+      body: Container(
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+        child: Column(children: [
+          TextButton.icon(
+            icon: const Icon(Icons.person),
+            label: const Text('Profile'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
+            style: TextButton.styleFrom(
+                primary: const Color.fromARGB(255, 166, 100, 178),
+                textStyle: const TextStyle(fontSize: 24)),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favorite Places',
+          const SizedBox(
+            height: 30,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gps_fixed),
-            label: 'Tracking Kid',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 149, 71, 163),
-        onTap: _onItemTapped,
+        ]),
       ),
-      body: const Text('Hi'),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AddKid()));
-      } else if (index == 1) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AddFavorite()));
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AppSettings()));
-      }
-    });
   }
 }

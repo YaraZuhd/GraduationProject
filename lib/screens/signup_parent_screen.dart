@@ -5,7 +5,6 @@ import 'package:test/screens/signin_screen.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:test/data/data_repositry.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpParentScreen extends StatefulWidget {
   const SignUpParentScreen({Key? key}) : super(key: key);
