@@ -84,8 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Favorite Places',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.gps_fixed),
+            label: 'Tracking Kid',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -126,8 +126,8 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AddFavorite()));
       } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Settings()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AppSettings()));
       }
     });
   }

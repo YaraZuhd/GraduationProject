@@ -4,14 +4,14 @@ import 'package:test/screens/add_kid.dart';
 import 'package:test/screens/home_screen.dart';
 import 'package:test/utils/color_utils.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class AppSettings extends StatefulWidget {
+  const AppSettings({Key? key}) : super(key: key);
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<AppSettings> createState() => _AppSettingsState();
 }
 
-class _SettingsState extends State<Settings> {
+class _AppSettingsState extends State<AppSettings> {
   int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
@@ -50,14 +50,15 @@ class _SettingsState extends State<Settings> {
             label: 'Favorite Places',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.gps_fixed),
+            label: 'Tracking Kid',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color.fromARGB(255, 149, 71, 163),
         onTap: _onItemTapped,
       ),
+      body: const Text('Hi'),
     );
   }
 
@@ -71,8 +72,8 @@ class _SettingsState extends State<Settings> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AddFavorite()));
       } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Settings()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AppSettings()));
       }
     });
   }
