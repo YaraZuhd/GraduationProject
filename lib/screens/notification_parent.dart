@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test/screens/local_notifications.dart';
-import 'package:test/screens/notification_parent.dart';
+import 'package:test/screens/location.dart';
 
 import '../utils/color_utils.dart';
 
@@ -40,10 +39,10 @@ Future<void> main() async {
     badge: true,
     sound: true,
   );
-  runApp(MyApp());
+  runApp(NotificationP());
 }
 
-class MyApp extends StatelessWidget {
+class NotificationP extends StatelessWidget {
   static const MaterialColor blue2 = MaterialColor(
     0xFF509A77,
     <int, Color>{
@@ -161,13 +160,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Expanded(
                     child: TextButton(
                       onPressed: () {
-                        token_read();
+                        if (check()) {
+                          token_read();
+                        }
                       },
                       child: Text(
-                        'Send ',
+                        'Send',
                         style: TextStyle(
                           color: Color.fromARGB(179, 255, 255, 255),
-                          fontSize: 20.0,
+                          fontSize: 24.0,
                         ),
                       ),
                     ),
@@ -178,6 +179,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () async {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyApp()));
+            },
+            tooltip: 'Push Notifications',
+            child: Icon(Icons.directions),
+          )
+        ],
       ),
     );
   }
@@ -190,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(token);
     String dataNotifications = '{ "to" : "$token",'
         ' "notification" : {'
-        ' "title":"Your Kid need help see his/her location",'
+        ' "title":"Don’t worry i’m here",'
         '"body":"$body"'
         ' }'
         ' }';
@@ -238,33 +252,25 @@ class _MyHomePageState extends State<MyHomePage> {
     _textToken.text = await token();
     print(_textToken.text);
     await FirebaseFirestore.instance
-        .collection('Token_child')
+        .collection('TokenParent')
         .doc('user1')
-        .set({'TokenChild': _textToken.text}, SetOptions(merge: true));
+        .set({'Tokenparent': _textToken.text}, SetOptions(merge: true));
   }
 
   Future<void> token_read() async {
     String _message = '';
     FirebaseFirestore.instance
-        .collection("Token_parent")
+        .collection("Token_child")
         .doc('user1')
         .get()
         .then((value) {
       setState(() {
-        _message = value.data()!['TokenParent'];
-        if (check()) {
-          pushNotificationsSpecificDevice(
-            title: _textTitle.text,
-            body: _textBody.text,
-            token: _message,
-          );
-        } else {
-          pushNotificationsSpecificDevice(
-            title: _textTitle.text,
-            body: "",
-            token: _message,
-          );
-        }
+        _message = value.data()!['TokenChild'];
+        pushNotificationsSpecificDevice(
+          title: _textTitle.text,
+          body: _textBody.text,
+          token: _message,
+        );
       });
     });
   }

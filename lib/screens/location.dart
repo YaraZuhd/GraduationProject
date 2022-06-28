@@ -25,14 +25,6 @@ class _MyAppState extends State<MyApp> {
   StreamSubscription<loc.LocationData>? _locationSubscription;
 
   @override
-  void initState() {
-    super.initState();
-    _requestPermission();
-    location.changeSettings(interval: 300, accuracy: loc.LocationAccuracy.high);
-    location.enableBackgroundMode(enable: true);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -55,32 +47,6 @@ class _MyAppState extends State<MyApp> {
           children: [
             const SizedBox(
               height: 100,
-            ),
-            TextButton(
-                onPressed: () {
-                  _getLocation();
-                },
-                child: Text(
-                  'add my location',
-                )),
-            const SizedBox(
-              height: 30,
-            ),
-            TextButton(
-                onPressed: () {
-                  _listenLocation();
-                },
-                child: Text('enable live location')),
-            const SizedBox(
-              height: 30,
-            ),
-            TextButton(
-                onPressed: () {
-                  _stopListening();
-                },
-                child: Text('stop live location')),
-            const SizedBox(
-              height: 30,
             ),
             Expanded(
                 child: StreamBuilder(
@@ -123,53 +89,5 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
-  }
-
-  _getLocation() async {
-    try {
-      final loc.LocationData _locationResult = await location.getLocation();
-      await FirebaseFirestore.instance.collection('location').doc('user1').set({
-        'latitude': _locationResult.latitude,
-        'longitude': _locationResult.longitude,
-        'name': 'Your kid'
-      }, SetOptions(merge: true));
-    } catch (e) {
-      print(e);
-    }
-    print("in putton");
-  }
-
-  Future<void> _listenLocation() async {
-    _locationSubscription = location.onLocationChanged.handleError((onError) {
-      print(onError);
-      _locationSubscription?.cancel();
-      setState(() {
-        _locationSubscription = null;
-      });
-    }).listen((loc.LocationData currentlocation) async {
-      await FirebaseFirestore.instance.collection('location').doc('user1').set({
-        'latitude': currentlocation.latitude,
-        'longitude': currentlocation.longitude,
-        'name': 'Your kid'
-      }, SetOptions(merge: true));
-    });
-  }
-
-  _stopListening() {
-    _locationSubscription?.cancel();
-    setState(() {
-      _locationSubscription = null;
-    });
-  }
-
-  _requestPermission() async {
-    var status = await Permission.location.request();
-    if (status.isGranted) {
-      print('done');
-    } else if (status.isDenied) {
-      _requestPermission();
-    } else if (status.isPermanentlyDenied) {
-      openAppSettings();
-    }
   }
 }

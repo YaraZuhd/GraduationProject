@@ -4,6 +4,13 @@ import 'package:test/screens/nav.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:test/screens/help_button.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:location/location.dart' as loc;
+import 'package:permission_handler/permission_handler.dart';
+import 'package:test/screens/notification.dart';
+
+import '../utils/color_utils.dart';
 
 class SignUpchildScreen extends StatefulWidget {
   const SignUpchildScreen({Key? key}) : super(key: key);
@@ -16,6 +23,17 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  final loc.Location location = loc.Location();
+  StreamSubscription<loc.LocationData>? _locationSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _requestPermission();
+    location.changeSettings(interval: 300, accuracy: loc.LocationAccuracy.high);
+    location.enableBackgroundMode(enable: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +77,10 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
                   height: 20,
                 ),
                 firebaseUIButton(context, "Sign Up", () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => help_buttonScreen()));
-                })
+                  _listenLocation();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyApp()));
+                }),
               ],
             ),
           ))),
@@ -95,5 +112,32 @@ class _SignUpScreenState extends State<SignUpchildScreen> {
         return alert;
       },
     );
+  }
+
+  Future<void> _listenLocation() async {
+    _locationSubscription = location.onLocationChanged.handleError((onError) {
+      print(onError);
+      _locationSubscription?.cancel();
+      setState(() {
+        _locationSubscription = null;
+      });
+    }).listen((loc.LocationData currentlocation) async {
+      await FirebaseFirestore.instance.collection('location').doc('user1').set({
+        'latitude': currentlocation.latitude,
+        'longitude': currentlocation.longitude,
+        'name': 'Your kid'
+      }, SetOptions(merge: true));
+    });
+  }
+
+  _requestPermission() async {
+    var status = await Permission.location.request();
+    if (status.isGranted) {
+      print('done');
+    } else if (status.isDenied) {
+      _requestPermission();
+    } else if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
   }
 }

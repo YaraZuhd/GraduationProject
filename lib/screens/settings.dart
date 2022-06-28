@@ -50,11 +50,11 @@ class _SettingsState extends State<Settings> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
+                MaterialPageRoute(builder: (context) => Profilescreen()),
               );
             },
             style: TextButton.styleFrom(
-                primary: const Color.fromARGB(255, 166, 100, 178),
+                primary: Color.fromARGB(255, 0, 0, 0),
                 textStyle: const TextStyle(fontSize: 24)),
           ),
           const SizedBox(

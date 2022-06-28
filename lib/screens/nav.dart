@@ -7,7 +7,8 @@ import 'package:test/screens/signin_screen.dart';
 import 'dart:async';
 import 'package:test/utils/color_utils.dart';
 import 'package:test/screens/location.dart';
-import 'package:test/screens/mic.dart';
+import 'package:test/screens/application-usage.dart';
+import 'package:test/screens/notification_parent.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       selectedIndex = 3;
                     });
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
+                        MaterialPageRoute(builder: (context) => Usage()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -123,36 +124,50 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 DrawerNavigationItem(
-                  iconData: Icons.settings,
-                  title: "Settings",
+                  iconData: Icons.add,
+                  title: "Add kid",
                   selected: selectedIndex == 5,
                   onTap: () {
                     setState(() {
                       selectedIndex = 5;
                     });
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Settings()));
+                        MaterialPageRoute(builder: (context) => AddKid()));
                   },
                 ),
                 DrawerNavigationItem(
-                  iconData: Icons.add,
-                  title: "Add kid",
+                  iconData: Icons.notifications,
+                  title: "Notification & Message",
                   selected: selectedIndex == 6,
                   onTap: () {
                     setState(() {
                       selectedIndex = 6;
                     });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationP()));
+                  },
+                ),
+                DrawerNavigationItem(
+                  iconData: Icons.settings,
+                  title: "Settings",
+                  selected: selectedIndex == 7,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 7;
+                    });
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddKid()));
+                        MaterialPageRoute(builder: (context) => Settings()));
                   },
                 ),
                 DrawerNavigationItem(
                   iconData: Icons.logout,
                   title: "Logout",
-                  selected: selectedIndex == 7,
+                  selected: selectedIndex == 8,
                   onTap: () {
                     setState(() {
-                      selectedIndex = 7;
+                      selectedIndex = 8;
                     });
                     Navigator.push(
                         context,
