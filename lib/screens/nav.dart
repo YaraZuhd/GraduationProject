@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:test/screens/add_favorite.dart';
 import 'package:test/screens/add_kid.dart';
 import 'package:test/screens/settings.dart';
 import 'package:test/screens/signin_screen.dart';
 import 'dart:async';
+import 'package:test/screens/view_areas.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:test/screens/location.dart';
 import 'package:test/screens/application-usage.dart';
@@ -84,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       selectedIndex = 1;
                     });
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
+                        MaterialPageRoute(builder: (context) => const MyApp()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -95,8 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       selectedIndex = 2;
                     });
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddFavorite()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -119,8 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       selectedIndex = 4;
                     });
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ViewAreas()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -131,8 +138,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       selectedIndex = 5;
                     });
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddKid()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddKid()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -158,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       selectedIndex = 7;
                     });
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Settings()));
+                        MaterialPageRoute(builder: (context) => AppSettings()));
                   },
                 ),
                 DrawerNavigationItem(
@@ -169,10 +178,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       selectedIndex = 8;
                     });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInScreen()));
+                    FirebaseAuth.instance.signOut().then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInScreen()));
+                    });
                   },
                 ),
               ],
@@ -185,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.fromLTRB(5, 10, 20, 0),
             child: Text('Protect My Kids'),
           ),
-          actions: <Widget>[],
+          actions: const <Widget>[],
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -244,7 +255,7 @@ class DrawerNavigationItem extends StatelessWidget {
       leading: Icon(iconData),
       onTap: onTap,
       title: Text(title),
-      selectedTileColor: Color.fromARGB(255, 166, 100, 178),
+      selectedTileColor: const Color.fromARGB(255, 166, 100, 178),
       selected: selected,
       selectedColor: Colors.black87,
     );

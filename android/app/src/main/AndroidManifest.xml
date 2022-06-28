@@ -2,16 +2,13 @@
     package="com.example.test">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    
-
     
    <application
         android:label="test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-                <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDKMt1Xvnguj7TPu3yPxJSuQVhrNgidxlQ"/>
+        <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyDKMt1Xvnguj7TPu3yPxJSuQVhrNgidxlQ"/> -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -41,6 +38,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-           
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDBQc3XVx-B8jq6ObQ_nBJqRQI6XDY1ieo"/>                 
     </application>
 </manifest>

@@ -6,7 +6,7 @@ import 'package:test/screens/info_card.dart';
 
 // our data
 //const email = "nnaderz@outlook.com";
-//const password = "123123"; // not real number :)
+//const password = "123123"; // not real number 🙂
 //const childDateOB = "2003-04-27";
 //const Kidname = "Mohammad";
 
@@ -39,29 +39,24 @@ class _profileScreenState extends State<Profilescreen> {
   Future _getDataFromDatebase() async {
     await FirebaseFirestore.instance
         .collection("DataModel")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc('CqptbDbbc9g6BOyohS3h')
         .get()
-        .then((snapshot) async {
+        .then((snapshot) {
       if (snapshot.exists) {
         setState(() {
-          name = snapshot.data()!["KidName"];
-          email = snapshot.data()!["email"];
-          dateofbirth = snapshot.data()!["childDateOB"];
-          username = snapshot.data()!["username"];
-          password = snapshot.data()!["password"];
+          name = snapshot.data()!['kidName'];
+          email = snapshot.data()!['email'];
+          dateofbirth = snapshot.data()!['childDateOB'];
+          username = snapshot.data()!['username'];
+          password = snapshot.data()!['password'];
         });
       }
     });
   }
 
   @override
-  void instance() {
-    super.initState();
-    _getDataFromDatebase();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    _getDataFromDatebase();
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 166, 100, 178),
         body: SafeArea(

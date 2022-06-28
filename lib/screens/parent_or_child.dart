@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:test/screens/notification_setting.dart';
 import 'package:test/screens/signin_screen.dart';
 import 'package:test/screens/signup_child_screen.dart';
-// import 'package:test/screens/signup_parent_screen.dart';
 import 'package:test/utils/color_utils.dart';
 
 class ParentOrChiled extends StatefulWidget {
@@ -22,14 +21,14 @@ class _ParentOrChiledState extends State<ParentOrChiled> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          "Protect My Family",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   title: const Text(
+      //     "Protect My Family",
+      //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      //   ),
+      // ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

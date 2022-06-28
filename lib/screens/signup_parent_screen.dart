@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test/data/data_model.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/nav.dart';
+import 'package:test/screens/signin_screen.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:test/data/data_repositry.dart';
 
 class SignUpParentScreen extends StatefulWidget {
   const SignUpParentScreen({Key? key}) : super(key: key);
@@ -15,6 +17,8 @@ class _SignUpScreenState extends State<SignUpParentScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _userNameTextController = TextEditingController();
+  List<DataModel> data = [];
+  final DataRepository repository = DataRepository();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,12 +69,18 @@ class _SignUpScreenState extends State<SignUpParentScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
+                    data.add(DataModel(
+                        _userNameTextController.text,
+                        _emailTextController.text,
+                        _passwordTextController.text,
+                        '',
+                        '',
+                        ''));
+                    repository.addDataModel(data[0]);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyHomePage(
-                                  title: '',
-                                )));
+                            builder: (context) => const SignInScreen()));
                   }).onError((error, stackTrace) {
                     // print("Error ${error.toString()}");
                   });

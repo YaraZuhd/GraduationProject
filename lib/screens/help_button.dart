@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/reusable_widgets/reusable_widget.dart';
 import 'package:test/utils/color_utils.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,9 @@ class help_buttonScreen extends StatefulWidget {
 }
 
 class _help_buttonScreen extends State<help_buttonScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  // final TextEditingController _passwordTextController = TextEditingController();
+  // final TextEditingController _emailTextController = TextEditingController();
+  // final TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,7 @@ class _help_buttonScreen extends State<help_buttonScreen> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -55,7 +54,7 @@ class _help_buttonScreen extends State<help_buttonScreen> {
                 ),
                 firebaseUIButton(context, "HELP", () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp()));
+                      MaterialPageRoute(builder: (context) => const MyApp()));
                 })
               ],
             ),
@@ -66,7 +65,7 @@ class _help_buttonScreen extends State<help_buttonScreen> {
   showAlertDialog(BuildContext context) {
     // Create button
     Widget okButton = FlatButton(
-      child: Text("OK"),
+      child: const Text("OK"),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -74,8 +73,8 @@ class _help_buttonScreen extends State<help_buttonScreen> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Error"),
-      content: Text("You must enter all information."),
+      title: const Text("Error"),
+      content: const Text("You must enter all information."),
       actions: [
         okButton,
       ],

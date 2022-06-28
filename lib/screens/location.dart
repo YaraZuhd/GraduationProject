@@ -12,10 +12,12 @@ import '../utils/color_utils.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(home: MyApp()));
+  runApp(const MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
                   FirebaseFirestore.instance.collection('location').snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 return ListView.builder(
                     itemCount: snapshot.data?.docs.length,
@@ -66,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                           children: [
                             Text(snapshot.data!.docs[index]['latitude']
                                 .toString()),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Text(snapshot.data!.docs[index]['longitude']
@@ -74,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                           ],
                         ),
                         trailing: IconButton(
-                          icon: Icon(Icons.directions),
+                          icon: const Icon(Icons.directions),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>

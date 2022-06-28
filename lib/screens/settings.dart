@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/profile.dart';
 import 'package:test/screens/nav.dart';
+import 'package:test/screens/profile.dart';
 import 'package:test/utils/color_utils.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class AppSettings extends StatefulWidget {
+  const AppSettings({Key? key}) : super(key: key);
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<AppSettings> createState() => _AppSettingsState();
 }
 
-class _SettingsState extends State<Settings> {
-  int _selectedIndex = 2;
-
+class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +39,7 @@ class _SettingsState extends State<Settings> {
                 ])),
           )),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: Column(children: [
           TextButton.icon(
             icon: const Icon(Icons.person),
