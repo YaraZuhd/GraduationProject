@@ -1,90 +1,127 @@
-import 'package:test/utils/color_utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:test/screens/notification_setting.dart';
+import 'package:test/screens/info_card.dart';
 
-class ParentOrChiled extends StatefulWidget {
-  const ParentOrChiled({Key? key}) : super(key: key);
+// our data
+//const email = "nnaderz@outlook.com";
+//const password = "123123"; // not real number 🙂
+//const childDateOB = "2003-04-27";
+//const Kidname = "Mohammad";
 
-  @override
-  _ParentOrChiledState createState() => _ParentOrChiledState();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MaterialApp(home: Profilescreen()));
 }
 
-class _ParentOrChiledState extends State<ParentOrChiled> {
-  final notifications = [
-    NotificationSetting(title: 'parent'),
-    NotificationSetting(title: 'child'),
-  ];
+/*class Profilescreen extends StatefulWidget{
+  @override
+  State<Profilescreen> createState() => _profileScreenState();
+
+}*/
+
+class Profilescreen extends StatefulWidget {
+  const Profilescreen({Key? key}) : super(key: key);
+
+  @override
+  _profileScreenState createState() => _profileScreenState();
+}
+
+class _profileScreenState extends State<Profilescreen> {
+  String? name = ' ';
+  String? email = ' ';
+  String? dateofbirth = ' ';
+  String? username = ' ';
+  String? password = ' ';
+
+  Future _getDataFromDatebase() async {
+    print("linaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    await FirebaseFirestore.instance
+        .collection("DataModel")
+        .doc('CqptbDbbc9g6BOyohS3h')
+        .get()
+        .then((snapshot) {
+      if (snapshot.exists) {
+        setState(() {
+          name = snapshot.data()!["KidName"];
+          email = snapshot.data()!["email"];
+          dateofbirth = snapshot.data()!["childDateOB"];
+          username = snapshot.data()!["username"];
+          password = snapshot.data()!["password"];
+          print("shaimaaaaaaaaaaaaaaaaaaaaaaaaa");
+          print(name);
+        });
+      }
+    });
+  }
+
+  @override
+  void instance() {
+    super.initState();
+    _getDataFromDatebase();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          "Protect My Family",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4")
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: SingleChildScrollView(
-              child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
-            child: Column(
-              children: <Widget>[
-                const Text(
-                    "By using this application. you will feel comfortable because your family members will be safe.",
-                    style: TextStyle(
-                      color: Color.fromARGB(179, 242, 241, 245),
-                      fontSize: 20.0,
-                    )),
-                const Divider(),
-                const Text("Please chose one of the following",
-                    style: TextStyle(
-                      color: Color.fromARGB(179, 11, 11, 11),
-                      fontSize: 20.0,
-                    )),
-                const SizedBox(
-                  height: 20,
-                ),
-                ...notifications.map(buildSingleCheckbox).toList(),
-              ],
-            ),
-          ))),
-    );
-  }
+        backgroundColor: const Color.fromARGB(255, 166, 100, 178),
+        body: SafeArea(
+          minimum: const EdgeInsets.only(top: 100),
+          child: Column(
+            children: <Widget>[
+              const CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 166, 100, 178),
+                radius: 50,
+                backgroundImage: AssetImage("assets/images/logo1.png"),
+              ),
 
-  Widget buildSingleCheckbox(NotificationSetting notification) => buildCheckbox(
-        notification: notification,
-        onClicked: () {
-          setState(() {
-            final newValue = !notification.value;
-            notification.value = newValue;
-            // print(newValue);
-          });
-        },
-      );
-  Widget buildCheckbox({
-    required NotificationSetting notification,
-    required VoidCallback onClicked,
-  }) =>
-      ListTile(
-        onTap: onClicked,
-        leading: Checkbox(
-          value: notification.value,
-          onChanged: (value) => onClicked(),
-        ),
-        title: Text(
-          notification.title,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      );
+              Text(
+                ' ' + username!,
+                style: TextStyle(
+                  fontSize: 40.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Pacifico",
+                ),
+              ),
+
+              const SizedBox(
+                height: 20,
+                width: 200,
+                child: Divider(
+                  color: Colors.white,
+                ),
+              ),
+
+              // we will be creating a new widget name info carrd
+              InfoCard(
+                  text: ' ' + email!,
+                  icon: Icons.email,
+                  onPressed: () async {}),
+              InfoCard(
+                  text: ' ' + password!,
+                  icon: Icons.lock,
+                  onPressed: () async {}),
+              const Divider(
+                thickness: 2,
+              ),
+              const Text("child information",
+                  style: TextStyle(
+                    color: Color.fromARGB(179, 255, 255, 255),
+                    fontSize: 18.0,
+                  )),
+              InfoCard(
+                  text: ' ' + name!,
+                  icon: Icons.person,
+                  onPressed: () async {}),
+              InfoCard(
+                  text: ' ' + dateofbirth!,
+                  icon: Icons.date_range,
+                  onPressed: () async {}),
+            ],
+          ),
+        ));
+  }
 }

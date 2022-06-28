@@ -54,7 +54,7 @@ class _help_buttonScreen extends State<help_buttonScreen> {
                 ),
                 firebaseUIButton(context, "HELP", () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const MyApp()));
+                      MaterialPageRoute(builder: (context) => MyApp()));
                 })
               ],
             ),
