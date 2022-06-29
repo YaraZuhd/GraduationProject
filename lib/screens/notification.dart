@@ -244,14 +244,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> token_read() async {
-    String _message = '';
+    String _message;
     FirebaseFirestore.instance
         .collection("Token_parent")
         .doc('user1')
         .get()
         .then((value) {
       setState(() {
-        _message = value.data()!['TokenParent'];
+        _message = value.data()!['Tokenparent'];
         if (check()) {
           pushNotificationsSpecificDevice(
             title: _textTitle.text,

@@ -252,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _textToken.text = await token();
     print(_textToken.text);
     await FirebaseFirestore.instance
-        .collection('TokenParent')
+        .collection('Token_parent')
         .doc('user1')
         .set({'Tokenparent': _textToken.text}, SetOptions(merge: true));
   }
