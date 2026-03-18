@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/nav.dart';
-import 'package:test/screens/select_coordinates.dart';
-import 'package:test/screens/select_from_map.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/nav.dart';
+import 'package:protect_my_kids/screens/select_coordinates.dart';
+import 'package:protect_my_kids/screens/select_from_map.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
 class AddFavorite extends StatefulWidget {
   const AddFavorite({Key? key}) : super(key: key);

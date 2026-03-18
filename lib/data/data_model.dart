@@ -42,14 +42,13 @@ class DataModel {
   }
 }
 
-// 1
 DataModel _dataModelFromJson(Map<String, dynamic> json) {
   return DataModel(
+    json['username'] as String,
     json['email'] as String,
     json['password'] as String,
-    json['username'] as String,
-    json['uniqueCode'] as String,
     json['childDateOB'] as String,
+    json['uniqueCode'] as String,
     json['kidName'] as String,
   );
 }

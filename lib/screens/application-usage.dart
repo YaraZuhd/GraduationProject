@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/add_kid.dart';
-import 'package:test/utils/color_utils.dart';
-import 'package:test/screens/nav.dart';
+import 'package:protect_my_kids/screens/add_favorite.dart';
+import 'package:protect_my_kids/screens/add_kid.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/nav.dart';
 
 class Usage extends StatefulWidget {
   const Usage({Key? key}) : super(key: key);

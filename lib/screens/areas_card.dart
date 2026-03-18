@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/data/red_and_green.dart';
+import 'package:protect_my_kids/data/red_and_green.dart';
 
 class AreasCard extends StatelessWidget {
   final RedAndGreen data;

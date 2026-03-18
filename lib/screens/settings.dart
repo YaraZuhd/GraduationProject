@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/screens/nav.dart';
-import 'package:test/screens/profile.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/nav.dart';
+import 'package:protect_my_kids/screens/profile.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
 class AppSettings extends StatefulWidget {
   const AppSettings({Key? key}) : super(key: key);

@@ -2,10 +2,10 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/utils/color_utils.dart';
-import 'package:test/data/data_model.dart';
-import 'package:test/data/data_repositry.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
+import 'package:protect_my_kids/data/data_model.dart';
+import 'package:protect_my_kids/data/data_repositry.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddKid extends StatefulWidget {
@@ -16,7 +16,7 @@ class AddKid extends StatefulWidget {
 }
 
 class _AddKidState extends State<AddKid> {
-  String exsistingCode = '';
+  String existingCode = '';
   late String docId;
   FirebaseAuth auth = FirebaseAuth.instance;
   String? email = FirebaseAuth.instance.currentUser!.email;
@@ -66,7 +66,7 @@ class _AddKidState extends State<AddKid> {
                   height: 60,
                 ),
                 const Text(
-                  'Please Fill The Following Information \nTo Generate A Code and Conect \nYour Kid Device',
+                  'Please Fill The Following Information \nTo Generate A Code and Connect \nYour Kid Device',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -117,7 +117,7 @@ class _AddKidState extends State<AddKid> {
                       padding: const EdgeInsets.fromLTRB(10, 2, 10, 0)),
                   onPressed: validateInfo()
                       ? () {
-                          if (exsistingCode != '') {
+                          if (existingCode != '') {
                             FirebaseFirestore.instance
                                 .collection('DataModel')
                                 .where('email', isEqualTo: email)
@@ -125,7 +125,6 @@ class _AddKidState extends State<AddKid> {
                                 .then((value) {
                               for (var element in value.docs) {
                                 docId = element.id;
-                                //print(element.id);
                               }
                             });
                             FirebaseFirestore.instance
@@ -133,12 +132,10 @@ class _AddKidState extends State<AddKid> {
                                 .doc(docId)
                                 .get()
                                 .then((value) {
-                              exsistingCode = value.get('uniqueCode');
-                              //print('12');
+                              existingCode = value.get('uniqueCode');
                             });
                           }
-                          //print(exsistingCode);
-                          if (exsistingCode == '') {
+                          if (existingCode == '') {
                             code = generateRandomString();
                             _showDialog(context);
                             FirebaseFirestore.instance
@@ -155,7 +152,7 @@ class _AddKidState extends State<AddKid> {
                               }
                             });
                           } else {
-                            code = exsistingCode;
+                            code = existingCode;
                             _showDialog(context);
                           }
                         }

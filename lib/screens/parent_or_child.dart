@@ -1,18 +1,18 @@
-import 'package:test/reusable_widgets/reusable_widget.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:test/screens/notification_setting.dart';
-import 'package:test/screens/signin_screen.dart';
-import 'package:test/screens/signup_child_screen.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/notification_setting.dart';
+import 'package:protect_my_kids/screens/signin_screen.dart';
+import 'package:protect_my_kids/screens/signup_child_screen.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
-class ParentOrChiled extends StatefulWidget {
-  const ParentOrChiled({Key? key}) : super(key: key);
+class ParentOrChild extends StatefulWidget {
+  const ParentOrChild({Key? key}) : super(key: key);
 
   @override
-  _ParentOrChiledState createState() => _ParentOrChiledState();
+  _ParentOrChildState createState() => _ParentOrChildState();
 }
 
-class _ParentOrChiledState extends State<ParentOrChiled> {
+class _ParentOrChildState extends State<ParentOrChild> {
   final allowNotifications = NotificationSetting(title: 'Parent device');
 
   final notifications = NotificationSetting(title: 'Child device');

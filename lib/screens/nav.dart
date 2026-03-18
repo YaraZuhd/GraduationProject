@@ -2,16 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/add_kid.dart';
-import 'package:test/screens/settings.dart';
-import 'package:test/screens/signin_screen.dart';
+import 'package:protect_my_kids/screens/add_favorite.dart';
+import 'package:protect_my_kids/screens/add_kid.dart';
+import 'package:protect_my_kids/screens/settings.dart';
+import 'package:protect_my_kids/screens/signin_screen.dart';
 import 'dart:async';
-import 'package:test/screens/view_areas.dart';
-import 'package:test/utils/color_utils.dart';
-import 'package:test/screens/location.dart';
-import 'package:test/screens/application-usage.dart';
-import 'package:test/screens/notification_parent.dart';
+import 'package:protect_my_kids/screens/view_areas.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/location.dart';
+import 'package:protect_my_kids/screens/application-usage.dart';
+import 'package:protect_my_kids/screens/notification_parent.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
