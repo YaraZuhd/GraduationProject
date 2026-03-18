@@ -1,5 +1,5 @@
-name: test
-description: A new Flutter project.
+name: protect_my_kids
+description: A Flutter application for parents to track and protect their children using GPS, geo-fencing, and real-time notifications.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

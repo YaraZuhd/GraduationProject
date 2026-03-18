@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test/data/data_repositry_areas.dart';
-import 'package:test/data/red_and_green.dart';
-import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/nav.dart';
-import 'package:test/screens/view_areas.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/data/data_repositry_areas.dart';
+import 'package:protect_my_kids/data/red_and_green.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
+import 'package:protect_my_kids/screens/nav.dart';
+import 'package:protect_my_kids/screens/view_areas.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
 class SelectCoordinates extends StatefulWidget {
   const SelectCoordinates({Key? key}) : super(key: key);

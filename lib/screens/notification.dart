@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test/screens/local_notifications.dart';
-import 'package:test/screens/notification_parent.dart';
+import 'package:protect_my_kids/screens/local_notifications.dart';
+import 'package:protect_my_kids/screens/notification_parent.dart';
 
 import '../utils/color_utils.dart';
 

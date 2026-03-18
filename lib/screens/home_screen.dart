@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:test/screens/add_favorite.dart';
-import 'package:test/screens/add_kid.dart';
-import 'package:test/screens/settings.dart';
+import 'package:protect_my_kids/screens/add_favorite.dart';
+import 'package:protect_my_kids/screens/add_kid.dart';
+import 'package:protect_my_kids/screens/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:test/screens/signin_screen.dart';
+import 'package:protect_my_kids/screens/signin_screen.dart';
 import 'dart:async';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

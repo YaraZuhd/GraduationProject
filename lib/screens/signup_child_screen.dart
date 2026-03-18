@@ -1,12 +1,12 @@
-import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:test/screens/help_button.dart';
+import 'package:protect_my_kids/screens/help_button.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart' as loc;
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test/screens/notification.dart';
+import 'package:protect_my_kids/screens/notification.dart';
 
 import '../utils/color_utils.dart';
 

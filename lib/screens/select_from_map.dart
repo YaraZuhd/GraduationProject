@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:test/screens/nav.dart';
-import 'package:test/screens/popup.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/screens/nav.dart';
+import 'package:protect_my_kids/screens/popup.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 
 class SelectFromMap extends StatefulWidget {
   const SelectFromMap({Key? key}) : super(key: key);

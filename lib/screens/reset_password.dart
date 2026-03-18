@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test/reusable_widgets/reusable_widget.dart';
-//import 'package:test/screens/home_screen.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
+//import 'package:protect_my_kids/screens/home_screen.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {

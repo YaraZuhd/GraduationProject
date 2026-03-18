@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test/reusable_widgets/reusable_widget.dart';
-import 'package:test/screens/nav.dart';
-import 'package:test/screens/reset_password.dart';
-import 'package:test/screens/signup_parent_screen.dart';
-import 'package:test/utils/color_utils.dart';
+import 'package:protect_my_kids/reusable_widgets/reusable_widget.dart';
+import 'package:protect_my_kids/screens/nav.dart';
+import 'package:protect_my_kids/screens/reset_password.dart';
+import 'package:protect_my_kids/screens/signup_parent_screen.dart';
+import 'package:protect_my_kids/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -66,9 +66,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 forgetPassword(context),
                 firebaseUIButton(context, "Sign In", () {
+                  if (_emailTextController.text.isEmpty ||
+                      _passwordTextController.text.isEmpty) {
+                    showAlertDialog(context, "Please enter your email and password.");
+                    return;
+                  }
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
+                          email: _emailTextController.text.trim(),
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(
@@ -78,7 +83,19 @@ class _SignInScreenState extends State<SignInScreen> {
                                   title: '',
                                 )));
                   }).onError((error, stackTrace) {
-                    showAlertDialog(context);
+                    String message = "Sign in failed. Please check your credentials.";
+                    if (error is FirebaseAuthException) {
+                      if (error.code == 'user-not-found') {
+                        message = "No account found for this email.";
+                      } else if (error.code == 'wrong-password') {
+                        message = "Incorrect password. Please try again.";
+                      } else if (error.code == 'invalid-email') {
+                        message = "The email address is not valid.";
+                      } else if (error.code == 'user-disabled') {
+                        message = "This account has been disabled.";
+                      }
+                    }
+                    showAlertDialog(context, message);
                   });
                 }),
                 signUpOption()
@@ -129,29 +146,20 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  showAlertDialog(BuildContext context) {
-    // Create button
-    Widget okButton = TextButton(
-      child: const Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: const Text("Error"),
-      content: const Text("You must enter all information."),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
+  void showAlertDialog(BuildContext context, String message) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return AlertDialog(
+          title: const Text("Error"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
       },
     );
   }
